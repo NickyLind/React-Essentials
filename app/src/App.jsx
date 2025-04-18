@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import reactImg from "./assets/react-core-concepts.png";
+import componentsImg from "./assets/components.png";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const reactDescriptions = ["Fundamental", "Cruciual", "Core"];
+function genRandomInt(max) {
+  return Math.floor(Math.random() * (max + 1));
 }
 
-export default App
+function Header() {
+  const description = reactDescriptions[genRandomInt(2)];
+
+  return (
+    <header>
+      <img src={reactImg} alt="Stylized atom" />
+      <h1>React Essentials</h1>
+      <p>
+        {description} React concepts you will need for almost any app you are
+        going to build!
+      </p>
+    </header>
+  );
+}
+
+function CoreConcept(props) {
+  return (
+    <li>
+      <img src={props.img} alt={props.title} />
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
+    </li>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <main>
+        <section id="core-concepts">
+          <h2>Core Concepts</h2>
+          <ul>
+            <CoreConcept
+              title={"Something pretty dumb"}
+              description={"Something stupid"}
+              img={componentsImg}
+            />
+          </ul>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default App;
